@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  django_app:
+    build: .
+    volumes:
+      - .:/usr/src/app/
+    ports:
+      - 127.0.0.1:5000:3000
+    command:
+      bash -c "while true; do sleep 1000; done"
+    depends_on:
+      - databse
+
+  databse:
+    image: postgres:latest
+    volumes:
+      - ./dbdata:/var/lib/postgresql/data/
+    expose:
+      - '5432'
+    environment:
+      POSTGRES_USER: 'docker'
+      POSTGRES_PASSWORD: 'docker'
+      POSTGRES_DB: 'docker'
+
+
