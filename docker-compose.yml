@@ -13,7 +13,7 @@ services:
       - databse
       
   databse:
-    image: postgres:latest
+    image: postgres:15.4
     volumes:
       - ./dbdata:/var/lib/postgresql/data/
     expose:
