@@ -27,5 +27,4 @@ jobs:
               # Now we have got the access of EC2 and we will start the deploy .
               cd /home/ubuntu/django-crud-app &&
               git fetch --all &&
-              git pull origin master &&
-              '
+              git pull origin master'
