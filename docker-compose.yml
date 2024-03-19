@@ -7,7 +7,8 @@ services:
       - .:/usr/src/app/
     ports:
       - 127.0.0.1:8081:8081
-    command: "gunicorn  --workers 3 --bind 8081  crudapp.wsgi:application --error-logfile=error-bqa.log --log-level='error' --capture-output"
+    command: bash -c "while true; do sleep 1000; done"
+    # command: "gunicorn  --workers 3 --bind 8081  crudapp.wsgi:application --error-logfile=error-bqa.log --log-level='error' --capture-output"
     depends_on:
       - databse
       
