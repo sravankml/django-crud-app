@@ -6,11 +6,28 @@ services:
     volumes:
       - .:/usr/src/app/
     ports:
-      - 127.0.0.1:5000:3000
+      - 127.0.0.1:8081:8081
     command:
-      bash -c "while true; do sleep 1000; done"
+      bash -c "gunicorn  --workers 3 --bind 8081  crudapp.wsgi:application --error-logfile=error-bqa.log --log-level='error' --capture-output"
     depends_on:
       - databse
+  beyondqa-celery:
+    build: .
+    volumes:
+      - .:/usr/src/app/
+    working_dir: /usr/src/app/
+    command: celery -A crudapp worker --loglevel=INFO --logfile=celery.log
+    depends_on:
+      - databse
+
+  beyondqa-beat:
+      build: .
+      volumes:
+        - .:/usr/src/app/
+      working_dir: /usr/src/app/
+      command: celery -A crudapp beat --logfile=beat.log
+      depends_on:
+        - databse
 
   databse:
     image: postgres:latest
