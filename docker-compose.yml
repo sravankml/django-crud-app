@@ -14,7 +14,7 @@ services:
   databse:
     image: postgres:15.4
     volumes:
-      - ./dbdata:/var/lib/postgresql/data/
+      - /home/ubuntu/dbdata:/var/lib/postgresql/data/
     expose:
       - '5432'
     environment:
