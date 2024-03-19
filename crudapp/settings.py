@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'docker',
         'USER': 'docker',
         'PASSWORD': 'docker',
-        'HOST': 'src_databse_1',
+        'HOST': 'django-crud-app-databse-1',
         'PORT': '5432',
     }
 }
